@@ -9,7 +9,20 @@ import logging
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-@router.get("/stream")
+@router.get(
+    "/stream",
+    summary="📡 Gerçek Zamanlı Veri Akışı",
+    description="Server-Sent Events ile belge işleme süreçlerinin gerçek zamanlı takibi. JWT token gereklidir.",
+    responses={
+        200: {
+            "description": "SSE stream başarıyla başlatıldı"
+        },
+        401: {
+            "description": "Kimlik doğrulama gerekli"
+        }
+    },
+    tags=["real-time"]
+)
 async def stream_updates(
     request: Request,
     current_user: User = Depends(get_current_user)

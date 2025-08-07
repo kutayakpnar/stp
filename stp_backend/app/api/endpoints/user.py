@@ -12,7 +12,36 @@ import logging
 logger = logging.getLogger(__name__)
 router = APIRouter()
 
-@router.post("/register", response_model=UserResponse)
+@router.post(
+    "/register", 
+    response_model=UserResponse,
+    summary="👤 Yeni Kullanıcı Kaydı",
+    description="Sisteme yeni kullanıcı kaydı. Email, şifre ve tam ad gereklidir.",
+    responses={
+        201: {
+            "description": "Kullanıcı başarıyla oluşturuldu",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "id": 1,
+                        "email": "kullanici@example.com",
+                        "full_name": "John Doe"
+                    }
+                }
+            }
+        },
+        400: {
+            "description": "Kayıt hatası - Email zaten kullanımda",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "detail": "Kullanıcı kaydı başarısız. Email zaten kullanımda olabilir."
+                    }
+                }
+            }
+        }
+    }
+)
 def register(
     user: UserCreate,
     db: Session = Depends(get_db)
@@ -27,7 +56,30 @@ def register(
             detail="Kullanıcı kaydı başarısız. Kullanıcı adı veya email zaten kullanımda olabilir."
         )
 
-@router.post("/login")
+@router.post(
+    "/login",
+    summary="🔐 Kullanıcı Girişi",
+    description="Email ve şifre ile giriş. Başarılı giriş sonrası JWT token cookie olarak ayarlanır.",
+    responses={
+        200: {
+            "description": "Başarılı giriş",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "user": {
+                            "id": 1,
+                            "email": "kullanici@example.com",
+                            "full_name": "John Doe"
+                        }
+                    }
+                }
+            }
+        },
+        401: {
+            "description": "Giriş başarısız - Yanlış bilgiler"
+        }
+    }
+)
 async def login(
     response: Response,
     form_data: OAuth2PasswordRequestForm = Depends(),
@@ -65,13 +117,35 @@ async def login(
         }
     }
 
-@router.post("/logout")
+@router.post(
+    "/logout",
+    summary="🚪 Çıkış Yap",
+    description="Kullanıcı oturumunu sonlandırır ve JWT token'ı siler.",
+    responses={
+        200: {
+            "description": "Başarılı çıkış"
+        }
+    }
+)
 async def logout(response: Response):
     """Kullanıcı çıkışı"""
     response.delete_cookie(key="access_token")
     return {"message": "Başarıyla çıkış yapıldı"}
 
-@router.get("/me", response_model=UserResponse)
+@router.get(
+    "/me", 
+    response_model=UserResponse,
+    summary="👤 Mevcut Kullanıcı Bilgileri",
+    description="Oturum açmış kullanıcının bilgilerini getirir. JWT token gereklidir.",
+    responses={
+        200: {
+            "description": "Kullanıcı bilgileri"
+        },
+        401: {
+            "description": "Kimlik doğrulama hatası"
+        }
+    }
+)
 async def read_users_me(
     current_user: UserModel = Depends(get_current_user)
 ):

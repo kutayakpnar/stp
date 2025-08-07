@@ -1,4 +1,4 @@
-from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException
+from fastapi import APIRouter, UploadFile, File, Form, Depends, HTTPException, Query, Path
 from fastapi.responses import StreamingResponse
 from sqlalchemy.orm import Session
 from app.db.session import get_db
@@ -26,9 +26,32 @@ import asyncio
 router = APIRouter()
 logger = logging.getLogger(__name__)
 
-@router.post("/process-document/")
+@router.post(
+    "/process-document/",
+    summary="📄 Belge Yükleme ve İşleme",
+    description="PDF, JPG, PNG dosyalarını AI ile analiz eder. OCR, NLP ve otomatik karar verme süreçlerini içerir.",
+    responses={
+        200: {
+            "description": "Belge başarıyla işlendi"
+        },
+        400: {
+            "description": "Geçersiz dosya formatı"
+        },
+        401: {
+            "description": "Kimlik doğrulama gerekli"
+        },
+        500: {
+            "description": "İşlem hatası"
+        }
+    },
+    tags=["documents"]
+)
 async def process_document(
-    file: UploadFile = File(...),
+    file: UploadFile = File(
+        ..., 
+        description="İşlenecek belge dosyası (PDF, JPG, PNG)",
+        example="banking_document.pdf"
+    ),
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
@@ -579,12 +602,39 @@ async def process_text(
         
         raise HTTPException(status_code=500, detail=f"İşlem hatası: {e}")
 
-@router.get("/decisions/")
+@router.get(
+    "/decisions/",
+    summary="📊 Kullanıcı Kararları Listesi",
+    description="Kullanıcının geçmiş belge işleme kararlarını listeler. Sayfalama destekler.",
+    responses={
+        200: {
+            "description": "Kullanıcı kararları başarıyla getirildi"
+        },
+        401: {
+            "description": "Kimlik doğrulama gerekli"
+        },
+        400: {
+            "description": "Geçersiz parametreler"
+        }
+    },
+    tags=["documents"]
+)
 async def get_user_decisions(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
-    limit: int = 100,
-    offset: int = 0
+    limit: int = Query(
+        100, 
+        ge=1, 
+        le=1000, 
+        description="Sayfa başına döndürülecek kayıt sayısı",
+        example=50
+    ),
+    offset: int = Query(
+        0, 
+        ge=0, 
+        description="Başlangıç kayıt pozisyonu",
+        example=0
+    )
 ):
     """Kullanıcının kararlarını getir"""
     decisions = decision_service.get_user_decisions(
@@ -618,9 +668,30 @@ async def get_user_decisions(
         "total": len(decisions)
     }
 
-@router.get("/document/{document_id}")
+@router.get(
+    "/document/{document_id}",
+    summary="📄 Belge Detayları",
+    description="Belge bilgilerini ve işlem sonuçlarını getirir. Sadece belge sahibi erişebilir.",
+    responses={
+        200: {
+            "description": "Belge bilgileri başarıyla getirildi"
+        },
+        404: {
+            "description": "Belge bulunamadı veya erişim izni yok"
+        },
+        401: {
+            "description": "Kimlik doğrulama gerekli"
+        }
+    },
+    tags=["documents"]
+)
 async def get_document(
-    document_id: int,
+    document_id: int = Path(
+        ..., 
+        description="Belge ID'si",
+        example=123,
+        gt=0
+    ),
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
@@ -654,9 +725,30 @@ async def get_document(
         "updated_at": document.updated_at
     }
 
-@router.get("/document/{document_id}/download")
+@router.get(
+    "/document/{document_id}/download",
+    summary="📥 Belge İndirme",
+    description="Orijinal belge dosyasını indirir. Sadece belge sahibi indirebilir.",
+    responses={
+        200: {
+            "description": "Belge başarıyla indirildi"
+        },
+        404: {
+            "description": "Belge bulunamadı veya dosya içeriği mevcut değil"
+        },
+        401: {
+            "description": "Kimlik doğrulama gerekli"
+        }
+    },
+    tags=["documents"]
+)
 async def download_document(
-    document_id: int,
+    document_id: int = Path(
+        ..., 
+        description="İndirilecek belgenin ID'si",
+        example=123,
+        gt=0
+    ),
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ):
