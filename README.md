@@ -24,14 +24,20 @@ The STP Banking System processes customer documents (PDFs, images, text) through
 
 ## 📱 **Application Screenshots**
 
+<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 37 24" src="https://github.com/user-attachments/assets/d854bc72-919c-42f6-87db-d307aff5c6c1" />
+
+<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 38 16" src="https://github.com/user-attachments/assets/d3b65dbf-3169-4254-a7b0-183ddb5a108b" />
+
+<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 38 32" src="https://github.com/user-attachments/assets/2f79c52f-e121-40ac-9843-972dd930a28d" />
 
 
-<img width="1470" height="879" alt="Ekran Resmi 2025-08-08 15 39 35" src="https://github.com/user-attachments/assets/24e20108-0898-49a0-b09a-041875347fdd" />
-<img width="1470" height="883" alt="Ekran Resmi 2025-08-08 15 39 04" src="https://github.com/user-attachments/assets/b3ebef09-5a7d-4fba-8252-28f2c4e1fa9e" />
-<img width="1465" height="880" alt="Ekran Resmi 2025-08-08 15 38 50" src="https://github.com/user-attachments/assets/27d55e11-8a54-4dce-bbba-a9a8ae13e479" />
-<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 38 32" src="https://github.com/user-attachments/assets/70c35cb5-fa36-479b-8b79-6842cd31dd36" />
-<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 38 16" src="https://github.com/user-attachments/assets/03a0b350-6282-40ee-b668-71a41cd6b5fd" />
-<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 37 24" src="https://github.com/user-attachments/assets/f23fe2d4-2ea2-42e2-9578-d1be4959215d" />
+<img width="1465" height="880" alt="Ekran Resmi 2025-08-08 15 38 50" src="https://github.com/user-attachments/assets/28392901-f615-48a4-93d6-43b4cef324e4" />
+
+<img width="1470" height="883" alt="Ekran Resmi 2025-08-08 15 39 04" src="https://github.com/user-attachments/assets/fac12ad9-2738-4023-b317-4c296cc6a79c" />
+
+
+<img width="1470" height="879" alt="Ekran Resmi 2025-08-08 15 39 35" src="https://github.com/user-attachments/assets/103eb6a4-3a6a-4ba3-bd96-4b1562e103a4" />
+
 
 
 
