@@ -302,13 +302,13 @@ def get_ocr_confidence(image):
 
 #### **🚀 Performance Optimizations**
 
-| Optimization | Impact | Performance Gain |
-|-------------|---------|------------------|
-| **DPI Standardization** | Image quality | +25% accuracy |
-| **Contrast Enhancement** | Text clarity | +20% accuracy |
-| **Character Whitelisting** | Noise reduction | +15% speed |
-| **Turkish-specific corrections** | Language accuracy | +30% for Turkish |
-| **Batch processing** | Throughput | +40% speed |
+| Optimization | Impact |
+|-------------|---------|
+| **DPI Standardization** | Image quality |
+| **Contrast Enhancement** | Text clarity | 
+| **Character Whitelisting** | Noise reduction |
+| **Turkish-specific corrections** | Language accuracy |
+| **Batch processing** | Throughput |
 
 #### **🎯 Banking Document Specific Features**
 
@@ -318,12 +318,7 @@ def get_ocr_confidence(image):
 4. **Date Formats**: Turkish date pattern recognition (DD.MM.YYYY, DD/MM/YYYY)
 5. **Bank Names**: Comprehensive Turkish bank name normalization
 
-#### **📈 OCR Accuracy Results**
 
-| Document Type | Before Optimization | After Optimization | Improvement |
-|---------------|-------------------|-------------------|-------------|
-| **Printed Documents** | 85% | 96% | +11% |
-| **Handwritten Forms** | 65% | 82% | +17% |
 
 
 #### **🔄 Adaptive OCR Pipeline**
@@ -419,6 +414,7 @@ curl -X GET "http://localhost:8000/api/v1/decisions/?limit=10&offset=0" \
 - **Multi-format Support**: PDF, JPG, PNG, plain text
 - **OCR Integration**: Tesseract with Turkish language support
 - **NLP Analysis**: OpenAI GPT-4o-mini for entity extraction
+- **Validation Service**: Checking extracted data
 - **Decision Engine**: Automated approval/rejection with business rules
 
 #### **✅ Real-time User Experience**
@@ -451,8 +447,8 @@ curl -X GET "http://localhost:8000/api/v1/decisions/?limit=10&offset=0" \
 2. **Document Upload** (drag & drop interface)
 3. **Real-time Processing** with visual progress
 4. **Decision Results** with confidence scoring
-5. **Processing History** with pagination
-6. **Document Download** of original files
+5. **Processing History** with table
+6. **Document Download** of original files but I didn't implement it
 
 ---
 
@@ -541,7 +537,7 @@ npm test -- --coverage
 
 ## 🐳 **Deployment Guide**
 
-### **Prerequisites**
+### **Prerequisites(Estimated)**
 - Docker >= 20.10
 - Docker Compose >= 2.0
 - 4GB+ RAM, 10GB+ disk space
@@ -754,7 +750,7 @@ docker run --rm -v stp_postgres_data:/data -v $(pwd):/backup \
    - Base64 encoding overhead
    - **Impact**: 100-300ms per file
 
-### **Optimization Recommendations**
+### **Optimization Recommendations (written by KUTAY AKPINAR)**
 
 #### **🚀 High-Impact Optimizations**
 
@@ -901,24 +897,6 @@ make up
 open http://localhost:3000
 ```
 
-## 🤝 **Contributing**
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-## 📄 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 **Support**
-
-- 📧 **Email**: support@stpbanking.com
-- 🐛 **Issues**: [GitHub Issues](https://github.com/kutayakpnar/stp/issues)
-- 📖 **Documentation**: [Docker Setup Guide](./README-Docker.md)
-
 ---
 
-**Built with ❤️ by the STP Banking Team**
+**KUTAY AKPINAR**
