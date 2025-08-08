@@ -84,9 +84,55 @@ graph TB
 ## 🗄️ **Database Schema & ER Diagram**
 
 ### **Entity Relationship Diagram**
-<!-- Add your ER diagram here -->
-![Database ER Diagram](./docs/images/er-diagram.png)
-*Complete database schema showing relationships between entities*
+```mermaid
+erDiagram
+    USERS {
+        int id PK
+        string email UK
+        string password_hash
+        string full_name
+        datetime created_at
+        datetime updated_at
+    }
+    
+    DOCUMENTS {
+        int id PK
+        int user_id FK
+        string file_name
+        string file_type
+        string content_type
+        binary file_content
+        int file_size
+        text raw_text
+        json extracted_data
+        string status
+        datetime created_at
+        datetime updated_at
+    }
+    
+    DECISIONS {
+        int id PK
+        int document_id FK
+        int user_id FK
+        string decision
+        float confidence
+        string document_type
+        string intent
+        string risk_level
+        json risk_factors
+        decimal transaction_amount
+        string transaction_currency
+        string customer_name
+        string customer_tckn
+        json decision_reasons
+        float processing_time
+        datetime created_at
+    }
+    
+    USERS ||--o{ DOCUMENTS : "owns"
+    USERS ||--o{ DECISIONS : "makes"
+    DOCUMENTS ||--|| DECISIONS : "generates"
+```
 
 ### **Core Database Tables**
 
