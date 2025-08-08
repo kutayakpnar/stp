@@ -25,6 +25,13 @@ The STP Banking System processes customer documents (PDFs, images, text) through
 ## 📱 **Application Screenshots**
 
 
+<img width="1470" height="879" alt="Ekran Resmi 2025-08-08 15 39 35" src="https://github.com/user-attachments/assets/d7deff54-e4d0-4dcf-806b-d9efe595a38e" />
+<img width="1470" height="883" alt="Ekran Resmi 2025-08-08 15 39 04" src="https://github.com/user-attachments/assets/513a6f87-32c5-44da-90c7-c89915b7fa6f" />
+<img width="1465" height="880" alt="Ekran Resmi 2025-08-08 15 38 50" src="https://github.com/user-attachments/assets/c0e1a8b7-fc75-44d5-a4d7-db50d60d31c5" />
+<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 38 32" src="https://github.com/user-attachments/assets/fda166aa-9a52-4699-a748-e1c9fd074cfb" />
+<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 38 16" src="https://github.com/user-attachments/assets/d4e58334-45c6-45a6-aba2-f6d46a980413" />
+<img width="1469" height="880" alt="Ekran Resmi 2025-08-08 15 37 24" src="https://github.com/user-attachments/assets/8fcc0b27-37b0-4f72-95e7-6d25508be115" />
+
 
 ---
 
